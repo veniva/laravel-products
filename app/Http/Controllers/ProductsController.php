@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Message;
+use App\Http\Requests\StoreProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,11 +12,15 @@ class ProductsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('pages.home');
+        $products = Product::all();
+        /** @var Message $messages */
+        $message = $request->session()->get('message');
+        return view('pages.home', ['products' => $products, 'message' => $message]);
     }
 
     /**
@@ -24,18 +30,22 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('pages.form', ['name' => '', 'qty' => '', 'action' => '', 'method' => '']);
+        return view('pages.form', ['name' => '', 'qty' => '', 'action' => '']);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreProduct  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProduct $request)
     {
-        //
+        $validatedData = $request->validated();
+        Product::create($validatedData);
+
+        return response()->redirectToAction('ProductsController@index')
+            ->with('message', new Message('The product has been added successfully', 'success'));
     }
 
     /**

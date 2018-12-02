@@ -21,7 +21,11 @@
             </div>
         </div>
         <div class="container">
-            @yield('page')
+            <div class="row mb-5">
+                <div class="col-md">
+                    @yield('page')
+                </div>
+            </div>
         </div>
 
         <!-- JS -->

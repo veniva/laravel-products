@@ -2,6 +2,18 @@
 
 @section('page')
 <div class="container">
+    @if (!empty($message) && $message instanceof \App\Http\Message)
+        <div class="row mb-5">
+            <div class="col-md">
+                <div class="alert alert-{{$message->getLevel()}} alert-dismissible fade show" role="alert">
+                    {{$message->getMessage()}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="row mb-5">
         <div class="col-md">
             <ul class="nav">
