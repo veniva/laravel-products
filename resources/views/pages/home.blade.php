@@ -18,7 +18,7 @@
         <div class="col-md">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="btn btn-primary" href="/create">Add new product</a>
+                    <a class="btn btn-primary" href="{{route('products.create')}}">Add new product</a>
                 </li>
             </ul>
         </div>

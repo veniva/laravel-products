@@ -30,7 +30,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('pages.form', ['name' => '', 'qty' => '', 'action' => '']);
+        return view('pages.form');
     }
 
     /**
@@ -45,18 +45,7 @@ class ProductsController extends Controller
         Product::create($validatedData);
 
         return response()->redirectToAction('ProductsController@index')
-            ->with('message', new Message('The product has been added successfully', 'success'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        //
+            ->with('message', new Message($this->successStored('added'), 'success'));
     }
 
     /**
@@ -67,19 +56,27 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('pages.form', []);
+        return view('pages.form', [
+            'action' => route('products.update', $product->id),
+            'name' => $product->name,
+            'qty' => $product->qty,
+            'method' => 'PUT'
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreProduct  $request
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(StoreProduct $request, Product $product)
     {
-        //
+        $validatedData = $request->validated();
+        $product->update($validatedData);
+
+        return redirect('/')->with('message', new Message($this->successStored('edited'), 'success'));
     }
 
     /**
@@ -91,5 +88,9 @@ class ProductsController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    private function successStored(string $action): string  {
+        return "The product has been $action successfully";
     }
 }

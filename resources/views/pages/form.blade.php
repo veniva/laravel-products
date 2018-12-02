@@ -11,15 +11,15 @@
         </div>
     @endif
 
-    <form method="POST" action="/{{$action ?? ''}}">
+    <form method="POST" action="{{$action ?? '/'}}">
         <div class="form-group">
             <label>Name:
-                <input type="text" class="form-control" name="name" value="{{old($name)}}"/>
+                <input type="text" class="form-control" name="name" value="{{old('name', $name ?? '')}}"/>
             </label>
         </div>
         <div class="form-group">
             <label>Qty:
-                <input type="number" class="form-control" name="qty" value="{{old($qty)}}"/>
+                <input type="number" class="form-control" name="qty" value="{{old('qty', $qty ?? '')}}"/>
             </label>
         </div>
         <div class="form-group">

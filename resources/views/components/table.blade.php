@@ -13,7 +13,7 @@
             <th scope="row">{{$product['id']}}</th>
             <td>{{$product['name']}}</td>
             <td>{{$product['qty']}}</td>
-            <td><a class="btn btn-link" href="/{{$product['id']}}/edit">Edit</a> | <a class="btn btn-link">Delete</a>
+            <td><a class="btn btn-link" href="{{route('products.edit', $product['id'])}}">Edit</a> | <a class="btn btn-link">Delete</a>
         </tr>
     @endforeach
     </tbody>
