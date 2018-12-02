@@ -12,10 +12,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/', 'ProductsController')->except([
-    'show', 'edit', 'create'
+Route::resource('/', 'ProductsController', [
+    'names' => [
+        'index' => 'products.index'
+    ]
+])->only([
+    'index', 'store'
 ]);
 
 Route::resource('/products', 'ProductsController')->except([
-    'index', 'show'
+    'index', 'store', 'show'
 ]);

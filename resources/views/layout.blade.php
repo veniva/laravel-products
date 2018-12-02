@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="_token" content="{{ csrf_token() }}">
 
         <title>Asap test task</title>
 
@@ -29,12 +30,10 @@
         </div>
 
         <!-- JS -->
-        <script type="text/javascript" src="{{url('lib/jquery-3.3.1.slim.min.js')}}"></script>
+        <script type="text/javascript" src="{{url('lib/jquery-3.3.1.min.js')}}"></script>
         <script type="text/javascript" src="{{url('lib/popper.min.js')}}"></script>
         <script type="text/javascript" src="{{url('lib/bootstrap/js/bootstrap.min.js')}}"></script>
         <script type="text/javascript" charset="utf8" src="{{url('lib/datatables/datatables.js')}}"></script>
-    <script>
-        $('#table1').DataTable();
-    </script>
+        <script type="text/javascript" src="{{url('js/script.js')}}"></script>
     </body>
 </html>

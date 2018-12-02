@@ -76,18 +76,23 @@ class ProductsController extends Controller
         $validatedData = $request->validated();
         $product->update($validatedData);
 
-        return redirect('/')->with('message', new Message($this->successStored('edited'), 'success'));
+        return response()->redirectToRoute('products.index')
+            ->with('message', new Message($this->successStored('edited'), 'success'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Product $product
+     * @param Request $request
+     * @return void
+     * @throws \Exception
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product, Request $request)
     {
-        //
+        $product->delete();
+
+        $request->session()->flash('message', new Message($this->successStored('deleted'), 'success'));
     }
 
     private function successStored(string $action): string  {

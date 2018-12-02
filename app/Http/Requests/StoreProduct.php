@@ -25,7 +25,11 @@ class StoreProduct extends FormRequest
     {
         return [
             'name' => 'required|max:50',
-            'qty' => 'required|numeric'
+            'qty' => ['required', 'numeric', function ($attribute, $value, $fail) {
+                if ($value < 0) {
+                    $fail($attribute.' cannot be negative.');
+                }
+            }]
         ];
     }
 }
