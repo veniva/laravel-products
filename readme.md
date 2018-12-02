@@ -8,6 +8,7 @@ pdo_sqlite
 
 #### Installation
 - deploy under the server root
+- run `composer install` if you have composer installed on your machine, if not, [download it](https://getcomposer.org/download/) and run `php composer.phar install`
 - rename .env.example into .env 
 - visit on the browser.
 
