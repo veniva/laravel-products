@@ -60,7 +60,8 @@ class ProductsController extends Controller
             'action' => route('products.update', $product->id),
             'name' => $product->name,
             'qty' => $product->qty,
-            'method' => 'PUT'
+            'method' => 'PUT',
+            'label' => 'Edit'
         ]);
     }
 

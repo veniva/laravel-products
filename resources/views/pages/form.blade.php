@@ -23,7 +23,7 @@
             </label>
         </div>
         <div class="form-group">
-            <button class="btn btn-primary" type="submit">Add</button>
+            <button class="btn btn-primary" type="submit">{{$label ?? 'Add'}}</button>
             <a class="btn btn-light" href="/">Cancel</a>
         </div>
         @csrf
